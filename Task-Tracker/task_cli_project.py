@@ -10,8 +10,13 @@ tasks = []
 #Auxiliary function
 def displayTasks(all_tasks):
     print("\nYour tasks: ")
-    for index, task in enumerate(all_tasks):
-        print(f"{index+1}: {task}")
+    
+    #Check if the task list is empty or not
+    if len(all_tasks) <= 0:
+        print("\n no tasks!")
+    else:
+        for index, task in enumerate(all_tasks):
+         print(f"{index+1}: {task}")
 
 #allows the user choose  a new operation
 def new_operation(all_tasks):
@@ -22,12 +27,25 @@ def new_operation(all_tasks):
     elif operation == 'E':
         pass
     elif operation == 'R':
-        pass
+        removeTask(all_tasks)
     elif operation == 'F':
         pass
     else:
         new_operation(all_tasks)
-        
+
+#allows the user to remove a task        
+def removeTask(all_tasks):
+    task_number = input("Enter the number of the task you want to remove: ")
+    
+    #the way .remove works is it takes in  the element you want to remove
+    #the number we wanto to remove is going to be the element at the index taks number minus one in the all tasks list
+    #becouse the task number is going to be 1 plus the index of that task and the task list 
+    all_tasks.remove(all_tasks[int(task_number)-1])
+    
+    print(f"\n Item {task_number} removed!")
+    
+    displayTasks(all_tasks)
+    new_operation(all_tasks)
     
 #allow the user to add a new task
 def addTask(all_tasks):
